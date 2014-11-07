@@ -197,6 +197,8 @@ ul li, ol li {
 						<h2>Below we 'll output the content of Json data into an UL</h2>
 
 						<ul id="links"></ul>
+
+						<ol id="links-array"></ol>
 						
 						<table>
 							<tr>
@@ -245,7 +247,7 @@ ul li, ol li {
 </table>
 <!-- /footer -->
 <script>
-// JS script to output Json Data in a loop on the page.
+// JS script to output Json Data (objects) in a loop on the page.
 	var info = {
 		"full_name": "Chiko Rekea",
 		"title" : "Editor in chief",
@@ -270,6 +272,36 @@ ul li, ol li {
 	// put the output in the <ul> with ID of 'links'
 	var update = document.getElementById('links');
 	update.innerHTML = output;
+
+
+	// JS script to output Json data (array) in a loop on the page. 
+// JS script to output Json Data (objects) in a loop on the page.
+	var data = {
+		"full_name": "Chiko Rekea",
+		"title" : "Editor in chief",
+		"links": [
+			{ "blog": "http://blog.com"},
+			{	"Facebook": "http://facebook.com"},
+			{	"Youtube": "http://youtube.com"},
+			{	"podcast":"http://feedburner.com"},
+			{	"twitter": "http://twitter.com"}
+
+		]
+	};
+
+	var output2 = "";
+
+	for(var i=0; i <= data.links.length; i++) {
+		for (key in data.links[i]){
+			if (data.links[i].hasOwnProperty(key)) {
+				output2 += '<li>' + '<a href="' + data.links[i][key] + '">' + key + '</a>' + '</li>'
+			} // hasOwnProperty check
+		} //for each object
+	} // for each array element
+
+
+var update2  = document.getElementById('links-array');
+update2.innerHTML = output2;
 </script>
 </body>
 </html>
